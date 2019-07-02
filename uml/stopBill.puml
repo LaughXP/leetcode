@@ -1,0 +1,43 @@
+@startuml
+|CAP|
+start
+:泛化接口;
+->hystrix熔断阈值3000ms;
+|#yellow|DC|
+:DriverOrderResponseApi#stopBillV2
+----
+超时3000ms;
+->客户端超时2000ms;
+|#AntiqueWhite|order|
+:OsDriverNewApi#stopBill
+----
+超时5000ms;
+->客户端超时2000ms;
+|#DeepSkyBlue|billing-center|
+:(evolution)BillUpdateService#finish
+----
+超时3000ms;
+->客户端超时2000ms;
+|#pink|lbs|
+note left
+方法级优先，接口级次之，全局配置再次之。
+如果级别一样，则消费方优先，提供方次之。
+end note
+partition LbsDriverTraceApi#queryTotalDistance:超时3000ms {
+fork
+	:不走第三方查询里程
+	----
+	忽略不计;
+  fork again
+    :走查询第三方抓路里程
+    ----
+    1800ms;
+  end fork
+}
+|billing-center|
+:后续服务;
+|order|
+:后续服务;
+|DC|
+:后续服务;
+@enduml
