@@ -1,24 +1,22 @@
-package com.laugh.leetcode;
+package com.laugh.sort;
 
 import java.util.Arrays;
 
 /**
- * @author yu.gao 2019-04-10 10:58 AM
+ * @author yu.gao 2019-04-09 2:19 PM
  */
-public class QuickSelect {
+public class QuickSort {
 
-    private static int select(int[] array, int k, int left, int right) {
+    private static void sort(int[] array, int left, int right) {
+        if(array == null || array.length == 0 || array.length == 1) {
+            return;
+        }
         if(right -left <= 0) {
-            return array[left];
+            return;
         }
         int pivot = partition(array, left, right);
-        if( k < pivot) {
-            return select(array, k, left, pivot -1);
-        } else if(k > pivot) {
-            return select(array, k, pivot + 1, right);
-        } else {
-            return array[pivot];
-        }
+        sort(array, left, pivot -1);
+        sort(array, pivot + 1, right);
     }
 
     private static int partition(int[] array, int left, int right) {
@@ -49,8 +47,8 @@ public class QuickSelect {
     }
 
     public static void main(String[] args) {
-        int[] array = new int[] {0, 50, 20, 10, 60, 30};
-        System.out.println(select(array, 1,0, array.length - 1));
+        int[] array = new int[] {65, 55, 45, 35, 25, 15, 10, 15};
+        sort(array, 0, array.length - 1);
         System.out.println(Arrays.toString(array));
     }
 }

@@ -1,4 +1,4 @@
-package com.laugh.leetcode;
+package com.laugh.sort;
 
 import java.util.Arrays;
 

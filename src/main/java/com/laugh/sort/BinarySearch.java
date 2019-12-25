@@ -1,4 +1,4 @@
-package com.laugh.leetcode;
+package com.laugh.sort;
 
 /**
  * @author yu.gao 2019-05-16 9:55 AM
