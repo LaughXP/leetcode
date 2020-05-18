@@ -1,0 +1,60 @@
+@startuml
+hide empty members
+
+together {
+
+enum SCOPE
+class Query
+class Distance
+}
+
+together {
+interface Context
+class DefaultContext
+interface Application
+class DefaultApplication
+}
+
+together {
+interface Container
+class TotalDistanceContainer
+interface Processor
+class ChooseStrategyProcessor
+class DegradeProcessor
+interface Converter
+class DefaultConverter
+}
+
+together {
+
+}
+
+together {
+
+}
+
+together {
+interface Support
+class OriginDistanceSupport
+}
+
+Container <|.. TotalDistanceContainer
+DefaultApplication ..> Context
+Container ..> Context
+Converter ..> Context
+Processor ..> Context
+Context <|.. DefaultContext
+Converter <|.. DefaultConverter
+Processor <|.. ChooseStrategyProcessor
+Processor <|.. DegradeProcessor
+Support <|.. OriginDistanceSupport
+TotalDistanceContainer "1" *-- "1" Converter
+TotalDistanceContainer "1" *-- "*" Processor
+Processor "1" *-- "*" Support
+Application <|.. DefaultApplication
+
+DefaultApplication "1" *-- "*" Container
+DefaultContext "1" *-- "1" SCOPE
+DefaultContext "1" *-- "1" Distance
+DefaultContext "1" *-- "1" Query
+@enduml

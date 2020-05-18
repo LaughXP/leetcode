@@ -1,12 +1,9 @@
 package com.laugh.leetcode;
 
 
-import sun.jvm.hotspot.debugger.LongHashMap;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
-import java.util.List;
 
 /**
  * @author yu.gao 2018-05-15 下午10:19
@@ -59,7 +56,7 @@ public class _1_TwoSum {
         int[] result = twoSum(nums, 9);
         System.out.println(Arrays.toString(result));
 
-        System.out.println(Arrays.toString(twoSumHashMap(nums, 9)));
+        System.out.println("ERROR" + Arrays.toString(twoSumHashMap(nums, 9)));
         System.out.println(Integer.toBinaryString(2047));
         System.out.println(Integer.toBinaryString(-100));
         System.out.println(Integer.toBinaryString(-100 & 2047));
