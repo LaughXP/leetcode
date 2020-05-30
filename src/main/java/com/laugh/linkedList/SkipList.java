@@ -99,7 +99,7 @@ public class SkipList {
         while (random.nextDouble() < PROB) {
             level++;
         }
-        return level < MAX_LEVEL ? level : MAX_LEVEL;
+        return Math.min(level, MAX_LEVEL);
     }
 
     public void remove(int k) {
